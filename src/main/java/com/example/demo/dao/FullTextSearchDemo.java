@@ -18,28 +18,29 @@ import java.util.List;
 @Repository
 @Transactional
 public class FullTextSearchDemo {
-	
-	@PersistenceContext
-	private EntityManager entityManager;
-	
-	public void insertBook(Book book) {
-		entityManager.persist(book);
-	}
-	
-	public List<Book> searchBook(String keyWord){
-		Session session = entityManager.unwrap(Session.class);
-		FullTextSession fullTextSession = Search.getFullTextSession(session);
-		QueryBuilder qb = fullTextSession.getSearchFactory()
-				.buildQueryBuilder().forEntity(Book.class).get();
-		org.apache.lucene.search.Query query = qb
-				.keyword().onFields("title","description","author") // Chỉ định tìm theo cột nào
-				.matching(keyWord)
-				.createQuery();
-		org.hibernate.search.FullTextQuery hibQuery = fullTextSession.createFullTextQuery(query, Book.class);
-		List<Book> results = hibQuery.getResultList();
-		return results;
-	}
-//	public List<Book> searchBookJPA(String keyWord){
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public void insertBook(Book book) {
+        entityManager.persist(book);
+    }
+
+    public List<Book> searchBook(String keyWord) {
+        Session session = entityManager.unwrap(Session.class);
+        FullTextSession fullTextSession = Search.getFullTextSession(session);
+        QueryBuilder qb = fullTextSession.getSearchFactory()
+                .buildQueryBuilder().forEntity(Book.class).get();
+        org.apache.lucene.search.Query query = qb
+                .keyword().onFields("title", "description", "author") // Chỉ định tìm theo cột nào
+                .matching(keyWord)
+                .createQuery();
+        org.hibernate.search.FullTextQuery hibQuery = fullTextSession.createFullTextQuery(query, Book.class);
+        List<Book> results = hibQuery.getResultList();
+        return results;
+    }
+
+    //	public List<Book> searchBookJPA(String keyWord){
 //		FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 //		QueryBuilder qb = fullTextEntityManager.getSearchFactory()
 //				.buildQueryBuilder().forEntity(Book.class).get();
@@ -51,13 +52,13 @@ public class FullTextSearchDemo {
 //		List<Book> results = hibQuery.getResultList();
 //		return results;
 //	}
-	public void indexBooks() throws Exception {
-		try {
-			Session session = entityManager.unwrap(Session.class);
-			FullTextSession fullTextSession = Search.getFullTextSession(session);
-			fullTextSession.createIndexer().startAndWait();
-		} catch(Exception e) {
-			throw e;
-		}
-	}
+    public void indexBooks() throws Exception {
+        try {
+            Session session = entityManager.unwrap(Session.class);
+            FullTextSession fullTextSession = Search.getFullTextSession(session);
+            fullTextSession.createIndexer().startAndWait();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }

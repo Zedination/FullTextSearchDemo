@@ -19,33 +19,33 @@ import javax.persistence.Table;
 @Setter
 @Table(name = "demofts.book")
 @AnalyzerDef(name = "customanalyzer",
-tokenizer = @TokenizerDef(factory = JapaneseTokenizerFactory.class),
-filters = {
-		@TokenFilterDef(factory = JapaneseBaseFormFilterFactory.class),
-		@TokenFilterDef(factory = JapanesePartOfSpeechStopFilterFactory.class),
-		@TokenFilterDef(factory = CJKWidthFilterFactory.class),
-		@TokenFilterDef(factory = StopFilterFactory.class),
-		@TokenFilterDef(factory = JapaneseKatakanaStemFilterFactory.class),
-		@TokenFilterDef(factory = JapaneseReadingFormFilterFactory.class),
-		@TokenFilterDef(factory = LowerCaseFilterFactory.class)
-})
+        tokenizer = @TokenizerDef(factory = JapaneseTokenizerFactory.class),
+        filters = {
+                @TokenFilterDef(factory = JapaneseBaseFormFilterFactory.class),
+                @TokenFilterDef(factory = JapanesePartOfSpeechStopFilterFactory.class),
+                @TokenFilterDef(factory = CJKWidthFilterFactory.class),
+                @TokenFilterDef(factory = StopFilterFactory.class),
+                @TokenFilterDef(factory = JapaneseKatakanaStemFilterFactory.class),
+                @TokenFilterDef(factory = JapaneseReadingFormFilterFactory.class),
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class)
+        })
 public class Book {
     @Id
     @Column(name = "book_id")
     private Integer bookId;
 
-    @Column(name = "title", nullable= false, length = 128, columnDefinition = "nvarchar(128)")
-    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO, termVector = TermVector.YES)
+    @Column(name = "title", nullable = false, length = 128, columnDefinition = "nvarchar(128)")
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO, termVector = TermVector.YES)
     @Analyzer(definition = "customanalyzer")
     private String title;
 
-    @Column(name = "description", nullable= false, length = 256, columnDefinition = "nvarchar(256)")
-    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO, termVector = TermVector.YES)
+    @Column(name = "description", nullable = false, length = 256, columnDefinition = "nvarchar(256)")
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO, termVector = TermVector.YES)
     @Analyzer(definition = "customanalyzer")
     private String description;
 
-    @Column(name = "author", nullable= false, length = 64, columnDefinition = "nvarchar(64)")
-    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO, termVector = TermVector.YES)
+    @Column(name = "author", nullable = false, length = 64, columnDefinition = "nvarchar(64)")
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO, termVector = TermVector.YES)
     @Analyzer(definition = "customanalyzer")
     private String author;
 

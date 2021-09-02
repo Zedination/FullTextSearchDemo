@@ -56,15 +56,15 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
         <!--<dependency>-->
-            <!--<groupId>org.apache.lucene</groupId>-->
-            <!--<artifactId>lucene-core</artifactId>-->
-            <!--<version>5.5.5</version>-->
+        <!--<groupId>org.apache.lucene</groupId>-->
+        <!--<artifactId>lucene-core</artifactId>-->
+        <!--<version>5.5.5</version>-->
         <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-kuromoji -->
         <!--<dependency>-->
-            <!--<groupId>org.apache.lucene</groupId>-->
-            <!--<artifactId>lucene-analyzers-kuromoji</artifactId>-->
-            <!--<version>8.3.1</version>-->
+        <!--<groupId>org.apache.lucene</groupId>-->
+        <!--<artifactId>lucene-analyzers-kuromoji</artifactId>-->
+        <!--<version>8.3.1</version>-->
         <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-kuromoji -->
         <dependency>
